@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Kendo UI Snippet</title>
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/7.0.2/default/default-ocean-blue.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2023.2.829/js/kendo.all.min.js"></script>
+    <script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
+    <style>
+
+        #grid {
+            background-color: black;
+        }
+
+        .k-grid-toolbar .k-grid-add {
+            background-color: #60E09E;
+            color: #fff;
+            
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="#">Student Records</a>
+        </div>
+    </nav>
+
+    <div id="grid"></div>
+    <script>
+        $("#grid").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "/Home/GetData/",
+                        dataType: "json"
+                    },
+                   
+                },
+                schema: {
+
+                    model: {
+                        id: "id",
+                        fields: {
+                            id: { type: "number", editable: false },
+                            name: { type: "string" },
+                            department: { type: "string" },
+                            email: { type: "string" }
+
+                        }
+                    }
+                },
+                pageSize: 20
+            },
+            columns: [
+                { field: "name", title: "Name" },
+                { field: "department", title: "Department" },
+                { field: "email", title: "Email" }
+            ],
+            toolbar: ["pdf", "excel", "search"],
+
+            height: 500,
+            scrollable: true,
+            sortable: true,
+            filterable: true,
+            pageable: {
+                pageSize: 10
+            }
+        });
+    </script>
+
+</body>
+</html>

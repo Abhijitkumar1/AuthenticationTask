@@ -1,0 +1,66 @@
+﻿@model AuthenticationTask.Models.Login;
+@{
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    <title></title>
+    <style>
+        body {
+            background-color: lightcyan;
+        }
+
+        #box {
+            width: 500px;
+            height:400px;
+            margin-top: 50px;
+            padding: 55px;
+
+            border:solid blue;
+            border-radius:10px 10px;
+            background-color:lightcyan;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="box">
+        <form asp-controller="Access" asp-action="Login" method="post">
+            <h1>Login</h1>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" asp-for="Email" />
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" asp-for="Password" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </div>
+
+            @if (ViewData["ValidateMessage"] != null)
+            {
+                <br />
+                <br />
+                <label>@ViewData["ValidateMessage"]</label>
+            }
+        </form>
+    </div>
+
+    
+</body>
+
+</html>
